@@ -349,9 +349,7 @@
 ;; DEL (backspace) characters.
 (setq-default electric-indent-chars '(?\n ?\^?))
 
-;; Prefer spaces over tabs. Spaces offer a more consistent default compared to
-;; 8-space tabs. This setting can be adjusted on a per-mode basis as needed.
-(setq-default indent-tabs-mode nil
+(setq-default indent-tabs-mode t
               tab-width 4)
 
 ;; Enable indentation and completion using the TAB key
@@ -447,6 +445,7 @@
 ;; Emacs to remain fully responsive, although LSP features will only become
 ;; available once the connection is established in the background.
 (setq eglot-sync-connect 0)
+(setq eglot-autoreconnect t)
 
 (setq eglot-autoshutdown t)  ; Shut down server after killing last managed buffer
 

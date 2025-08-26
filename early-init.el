@@ -24,6 +24,8 @@
 
 ;;; Internal variables
 
+(setq package-enable-at-startup nil)
+
 (defvar minimal-emacs--backup-gc-cons-threshold gc-cons-threshold
   "Backup of the original value of `gc-cons-threshold' before startup.")
 
@@ -203,7 +205,7 @@ pre-early-init.el, and post-early-init.el.")
 (setq default-input-method nil)
 
 ;; Increase how much is read from processes in a single chunk
-(setq read-process-output-max (* 2 1024 1024))  ; 1024kb
+(setq read-process-output-max (* 4 8192 8192))  ; 16384kb
 
 (setq process-adaptive-read-buffering nil)
 
@@ -453,7 +455,7 @@ this stage of initialization."
 ;;; Security
 (setq gnutls-verify-error t)  ; Prompts user if there are certificate issues
 (setq tls-checktrust t)  ; Ensure SSL/TLS connections undergo trust verification
-(setq gnutls-min-prime-bits 3072)  ; Stronger GnuTLS encryption
+(setq gnutls-min-prime-bits 4096)  ; Stronger GnuTLS encryption
 
 ;;; package.el
 (setq use-package-compute-statistics minimal-emacs-debug)
