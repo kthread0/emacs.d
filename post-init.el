@@ -318,7 +318,7 @@
         treemacs-select-when-already-in-treemacs 'move-back
         treemacs-space-between-root-nodes        t
         treemacs-tag-follow-cleanup              t
-        treemacs-tag-follow-delay                1.5
+        treemacs-tag-follow-delay                0
         treemacs-text-scale                      nil
         treemacs-user-mode-line-format           nil
         treemacs-user-header-line-format         nil
@@ -432,7 +432,28 @@
 
 (use-package all-the-icons
   :ensure t
-  )
+  :if (display-graphic-p))
 
 (use-package projectile
   :ensure t)
+
+(use-package doom-themes
+  :ensure t
+  :custom
+  ;; Global settings (defaults)
+  (doom-themes-enable-bold t)   ; if nil, bold is universally disabled
+  (doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (doom-themes-padded-modeline t)
+  ;; for treemacs users
+  (doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
+  :config
+  (load-theme 'doom-monokai-spectrum t)
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+  ;; Enable custom neotree theme (nerd-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; or for treemacs users
+  (doom-themes-treemacs-config)
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
